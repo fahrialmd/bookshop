@@ -3,6 +3,9 @@
     "native_hana_associations": false
   },
   "requires": {
-    "db": "hana"
+    "db": "hana",
+    "[hybrid]": {
+      "auth": "xsuaa"
+    }
   }
 }
