@@ -4,26 +4,6 @@ spring:
   # sql.init.platform: h2
 cds:
   data-source.auto-config.enabled: true
-  security:
-    mock:
-      users:
-        user:
-          password: user
-          tenant: CrazyCars
-          roles:
-            - Viewer
-          attributes:
-            Country: [GER, FR]
-          additional:
-            email: myviewer@crazycars.com
-          features:
-            - cruise
-            - park
-        admin:
-          password: admin
-          privileged: true
-          features:
-            - "*"
 ---
 management:
   endpoint:
