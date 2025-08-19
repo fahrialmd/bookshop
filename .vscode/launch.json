@@ -35,7 +35,10 @@
 	"compounds": [
 		{
 			"name": "🚀 Start Full App (Spring Boot + Approuter)",
-			"configurations": ["cds bind hybrid", "Launch Approuter"],
+			"configurations": [
+				"Spring Boot-Application Bookshop",
+				"Launch Approuter"
+			],
 			"stopAll": true,
 			"presentation": {
 				"hidden": false,
