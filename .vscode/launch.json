@@ -19,8 +19,7 @@
 			"localRoot": "${workspaceFolder}/app/router",
 			"env": {
 				"CF_NODEJS_LOGGING_LEVEL": "debug",
-				"XS_APP_LOG_LEVEL": "debug",
-				"destinations": "[{\"name\":\"srv-api\",\"url\":\"http://localhost:8080\",\"forwardAuthToken\":true,\"strictSSL\":false}]"
+				"XS_APP_LOG_LEVEL": "debug"
 			}
 		},
 		{
