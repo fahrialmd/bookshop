@@ -6,19 +6,19 @@
 					"catalogs": [],
 					"groups": [
 						{
-							"id": "group1",
-							"title": "Managed Reports",
+							"id": "commonreport-display",
+							"title": "Common Report",
 							"isPreset": true,
 							"isVisible": true,
 							"isGroupLocked": false,
 							"tiles": [
 								{
-									"id": "zzdtimpfile-manage",
+									"id": "commonreport-display",
 									"tileType": "sap.ushell.ui.tile.StaticTile",
 									"properties": {
-										"targetURL": "#zzdtimpfile-manage",
-										"title": "Manage Batch Import File",
-										"description": "Manage Batch Import File"
+										"targetURL": "#commonreport-display",
+										"title": "Common Report",
+										"description": "Common Report"
 									}
 								}
 							]
@@ -36,8 +36,8 @@
 			"adapter": {
 				"config": {
 					"inbounds": {
-						"zzdtimplog-display": {
-							"semanticObject": "zzdtimplog",
+						"commonreport-display": {
+							"semanticObject": "commonreport",
 							"action": "display",
 							"signature": {
 								"parameters": {},
@@ -45,8 +45,8 @@
 							},
 							"resolutionResult": {
 								"applicationType": "SAPUI5",
-								"additionalInformation": "SAPUI5.Component=zzdtimplog",
-								"url": "/zzdtimplog/webapp"
+								"additionalInformation": "SAPUI5.Component=commonreport",
+								"url": "/commonreport/webapp"
 							}
 						}
 					}
