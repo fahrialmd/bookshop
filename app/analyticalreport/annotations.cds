@@ -19,11 +19,6 @@ annotate service.Orders with @(
                 Label: '{i18n>Total1}',
                 Value: total,
             },
-            {
-                $Type: 'UI.DataField',
-                Label: '{i18n>Currencycode}',
-                Value: currency_code,
-            },
         ],
     },
     UI.Facets                    : [{
@@ -48,6 +43,11 @@ annotate service.Orders with @(
             Value: total,
             Label: '{i18n>Total}',
         },
+    ],
+    UI.SelectionFields           : [
+        OrderNo,
+        buyer,
+        total
     ],
 );
 

@@ -65,7 +65,7 @@ entity Orders : cuid, managed {
                    on Items.parent = $self;
     buyer    : User;
     total    : Decimal(9, 2)  @readonly                     @Measures.ISOCurrency: currency_code;
-    currency : Currency       @Semantics.currencyCode;
+    currency : Currency;
 }
 
 // Entity for order items
