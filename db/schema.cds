@@ -3,7 +3,7 @@ using {
     managed,
     sap,
     cuid,
-    User
+    User,
 } from '@sap/cds/common';
 
 namespace sap.capire.bookshop;
@@ -75,4 +75,10 @@ entity OrderItems : cuid {
     quantity : Integer;
     amount   : Decimal(9, 2);
     currency : Currency;
+}
+
+entity Currencies : sap.common.CodeList {
+    key code      : String(3) @(title: '{i18n>CurrencyCode}');
+        symbol    : String(5) @(title: '{i18n>CurrencySymbol}');
+        minorunit : Int16     @(title: '{i18n>CurrencyMinorUnit}');
 }
