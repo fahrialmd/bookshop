@@ -15,6 +15,7 @@ type TechnicalBooleanFlag : Boolean @(
 );
 
 // Entity for books
+@fiori.draft.enabled
 entity Books : cuid, managed {
     title        : localized String(111);
     descr        : localized String(1111);
@@ -60,11 +61,18 @@ entity Genres : sap.common.CodeList {
 
 // Entity for orders
 entity Orders : cuid, managed {
-    OrderNo  : String         @title: '{i18n>OrderNumber}'  @mandatory; //> readable key
+    @mandatory
+    @title               : '{i18n>OrderNumber}'
+    OrderNo  : String;
     Items    : Composition of many OrderItems
                    on Items.parent = $self;
     buyer    : User;
-    total    : Decimal(9, 2)  @readonly                     @Measures.ISOCurrency: currency_code;
+
+    @readonly
+    @Measures.ISOCurrency: currency_code
+    total    : Decimal(9, 2);
+
+    @Semantics.currencyCode
     currency : Currency;
 }
 
@@ -75,10 +83,4 @@ entity OrderItems : cuid {
     quantity : Integer;
     amount   : Decimal(9, 2);
     currency : Currency;
-}
-
-entity Currencies : sap.common.CodeList {
-    key code      : String(3) @(title: '{i18n>CurrencyCode}');
-        symbol    : String(5) @(title: '{i18n>CurrencySymbol}');
-        minorunit : Int16     @(title: '{i18n>CurrencyMinorUnit}');
 }
