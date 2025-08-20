@@ -1,18 +1,10 @@
 using {sap.capire.bookshop as my} from '../db/schema';
 
-service CatalogService @(path: '/browse') {
+service CatalogService {
 
     @readonly
-    entity Books as
-        select from my.Books {
-            *,
-            author.name as author
-        }
-        excluding {
-            createdBy,
-            modifiedBy
-        };
+    entity Books   as projection on my.Books;
 
-    @requires: 'authenticated-user'
-    action submitOrder(book: Books:ID, quantity: Integer);
+    @readonly
+    entity Authors as projection on my.Authors;
 }
