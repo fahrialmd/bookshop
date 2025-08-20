@@ -1,55 +1,68 @@
 using CatalogService as service from '../../srv/cat-service';
+
 annotate service.Orders with @(
-    UI.FieldGroup #GeneratedGroup : {
-        $Type : 'UI.FieldGroupType',
+    UI.FieldGroup #GeneratedGroup: {
+        $Type: 'UI.FieldGroupType',
         Data : [
             {
-                $Type : 'UI.DataField',
-                Value : OrderNo,
+                $Type: 'UI.DataField',
+                Value: OrderNo,
+                Label: '{i18n>OrderNumber}',
             },
             {
-                $Type : 'UI.DataField',
-                Value : buyer,
+                $Type: 'UI.DataField',
+                Value: buyer,
+                Label: '{i18n>UserID}',
             },
             {
-                $Type : 'UI.DataField',
-                Label : 'total',
-                Value : total,
+                $Type: 'UI.DataField',
+                Label: '{i18n>Total1}',
+                Value: total,
             },
             {
-                $Type : 'UI.DataField',
-                Label : 'currency_code',
-                Value : currency_code,
+                $Type: 'UI.DataField',
+                Label: '{i18n>Currencycode}',
+                Value: currency_code,
             },
         ],
     },
-    UI.Facets : [
+    UI.Facets                    : [{
+        $Type : 'UI.ReferenceFacet',
+        ID    : 'GeneratedFacet1',
+        Label : '{i18n>GeneralInformation}',
+        Target: '@UI.FieldGroup#GeneratedGroup',
+    }, ],
+    UI.LineItem                  : [
         {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup',
-        },
-    ],
-    UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Value : OrderNo,
-        },
-        {
-            $Type : 'UI.DataField',
-            Value : buyer,
+            $Type: 'UI.DataField',
+            Value: OrderNo,
+            Label: '{i18n>OrderNumber}',
         },
         {
-            $Type : 'UI.DataField',
-            Label : 'total',
-            Value : total,
+            $Type: 'UI.DataField',
+            Value: buyer,
+            Label: '{i18n>UserID}',
         },
         {
-            $Type : 'UI.DataField',
-            Label : 'currency_code',
-            Value : currency_code,
+            $Type: 'UI.DataField',
+            Value: total,
+            Label: '{i18n>Total}',
         },
     ],
 );
 
+
+annotate CatalogService.Orders with {
+    total  @Analytics.Measure  @Aggregation.default: #SUM
+};
+
+annotate CatalogService.Orders with @(Aggregation: {
+    ApplySupported        : {
+        $Type              : 'Aggregation.ApplySupportedType',
+        GroupableProperties: [
+            buyer,
+            OrderNo
+        ]
+    },
+    CustomAggregate #total: 'Edm.Decimal'
+})

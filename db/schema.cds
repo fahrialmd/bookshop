@@ -60,12 +60,12 @@ entity Genres : sap.common.CodeList {
 
 // Entity for orders
 entity Orders : cuid, managed {
-    OrderNo  : String        @title: '{i18n>OrderNumber}'  @mandatory; //> readable key
+    OrderNo  : String         @title: '{i18n>OrderNumber}'  @mandatory; //> readable key
     Items    : Composition of many OrderItems
                    on Items.parent = $self;
     buyer    : User;
-    total    : Decimal(9, 2) @readonly;
-    currency : Currency;
+    total    : Decimal(9, 2)  @readonly                     @Measures.ISOCurrency: currency_code;
+    currency : Currency       @Semantics.currencyCode;
 }
 
 // Entity for order items
