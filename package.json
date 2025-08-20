@@ -8,6 +8,7 @@
     "@sap/cds-dk": "^8.9.2"
   },
   "sapux": [
-    "app/commonreport"
+    "app/commonreport",
+    "app/analyticalreport"
   ]
 }
