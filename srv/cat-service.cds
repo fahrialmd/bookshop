@@ -7,12 +7,7 @@ service CatalogService {
 
     @readonly
     entity Authors as projection on my.Authors;
-}
 
-annotate CatalogService.Books with @UI: {LineItem: [
-    {Value: title},
-    {Value: descr},
-    {Value: stock},
-    {Value: price},
-    {Value: currency_code}
-]};
+    @readonly
+    entity Orders  as projection on my.Orders;
+}
