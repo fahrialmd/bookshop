@@ -1,6 +1,11 @@
 ---
 spring:
-  config.activate.on-profile: default
+  config:
+    activate:
+      on-profile: default
+  web:
+    resources:
+      static-locations: "file:./app/"
   # sql.init.platform: h2
 cds:
   data-source.auto-config.enabled: true
