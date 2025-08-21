@@ -9,6 +9,7 @@
   },
   "sapux": [
     "app/commonreport",
-    "app/analyticalreport"
+    "app/analyticalreport",
+    "app/analyticalchartreport"
   ]
 }
