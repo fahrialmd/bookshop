@@ -1,172 +1,172 @@
 {
-  "_version": "1.65.0",
-  "sap.app": {
-    "id": "analyticalpagereport",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:alp",
-      "version": "1.16.5",
-      "toolsId": "266f6f77-42ef-4080-92df-20e1c78601d4"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/odata/v4/CatalogService/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "odataVersion": "4.0"
-        }
-      }
-    },
-    "crossNavigation": {
-      "inbounds": {
-        "analyticalpagereport-display": {
-          "semanticObject": "analyticalpagereport",
-          "action": "display",
-          "title": "{{analyticalpagereport-display.flpTitle}}",
-          "signature": {
-            "parameters": {},
-            "additionalParameters": "allowed"
-          }
-        }
-      }
-    }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.139.0",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.fe.templates": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "analyticalpagereport.i18n.i18n"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {
-          "operationMode": "Server",
-          "autoExpandSelect": true,
-          "earlyRequests": true
-        }
-      },
-      "@i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "uri": "i18n/i18n.properties"
-      }
-    },
-    "resources": {
-      "css": []
-    },
-    "routing": {
-      "config": {},
-      "routes": [
-        {
-          "pattern": ":?query:",
-          "name": "OrderitemsList",
-          "target": "OrderitemsList"
-        },
-        {
-          "pattern": "Orderitems({key}):?query:",
-          "name": "OrderitemsObjectPage",
-          "target": "OrderitemsObjectPage"
-        }
-      ],
-      "targets": {
-        "OrderitemsList": {
-          "type": "Component",
-          "id": "OrderitemsList",
-          "name": "sap.fe.templates.ListReport",
-          "options": {
-            "settings": {
-              "contextPath": "/Orderitems",
-              "variantManagement": "Page",
-              "navigation": {
-                "Orderitems": {
-                  "detail": {
-                    "route": "OrderitemsObjectPage"
-                  }
-                }
-              },
-              "controlConfiguration": {
-                "@com.sap.vocabularies.UI.v1.LineItem": {
-                  "tableSettings": {
-                    "type": "AnalyticalTable",
-                    "selectionMode": "Auto"
-                  }
-                }
-              },
-              "views": {
-                "paths": [
-                  {
-                    "primary": [
-                      {
-                        "annotationPath": "com.sap.vocabularies.UI.v1.PresentationVariant"
-                      }
-                    ],
-                    "secondary": [
-                      {
-                        "annotationPath": "com.sap.vocabularies.UI.v1.LineItem"
-                      }
-                    ],
-                    "defaultPath": "both"
-                  }
-                ]
-              }
-            }
-          }
-        },
-        "OrderitemsObjectPage": {
-          "type": "Component",
-          "id": "OrderitemsObjectPage",
-          "name": "sap.fe.templates.ObjectPage",
-          "options": {
-            "settings": {
-              "editableHeaderContent": false,
-              "contextPath": "/Orderitems"
-            }
-          }
-        }
-      }
-    }
-  },
-  "sap.fiori": {
-    "registrationIds": [],
-    "archeType": "analytical"
-  }
+	"_version": "1.65.0",
+	"sap.app": {
+		"id": "analyticalpagereport",
+		"type": "application",
+		"i18n": "i18n/i18n.properties",
+		"applicationVersion": {
+			"version": "0.0.1"
+		},
+		"title": "{{appTitle}}",
+		"description": "{{appDescription}}",
+		"resources": "resources.json",
+		"sourceTemplate": {
+			"id": "@sap/generator-fiori:alp",
+			"version": "1.16.5",
+			"toolsId": "266f6f77-42ef-4080-92df-20e1c78601d4"
+		},
+		"dataSources": {
+			"mainService": {
+				"uri": "/odata/v4/CatalogService/",
+				"type": "OData",
+				"settings": {
+					"annotations": [],
+					"odataVersion": "4.0"
+				}
+			}
+		},
+		"crossNavigation": {
+			"inbounds": {
+				"analyticalpagereport-display": {
+					"semanticObject": "analyticalpagereport",
+					"action": "display",
+					"title": "{{analyticalpagereport-display.flpTitle}}",
+					"signature": {
+						"parameters": {},
+						"additionalParameters": "allowed"
+					}
+				}
+			}
+		}
+	},
+	"sap.ui": {
+		"technology": "UI5",
+		"icons": {
+			"icon": "",
+			"favIcon": "",
+			"phone": "",
+			"phone@2": "",
+			"tablet": "",
+			"tablet@2": ""
+		},
+		"deviceTypes": {
+			"desktop": true,
+			"tablet": true,
+			"phone": true
+		}
+	},
+	"sap.ui5": {
+		"flexEnabled": true,
+		"dependencies": {
+			"minUI5Version": "1.139.0",
+			"libs": {
+				"sap.m": {},
+				"sap.ui.core": {},
+				"sap.fe.templates": {}
+			}
+		},
+		"contentDensities": {
+			"compact": true,
+			"cozy": true
+		},
+		"models": {
+			"i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"settings": {
+					"bundleName": "analyticalpagereport.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
+				}
+			},
+			"@i18n": {
+				"type": "sap.ui.model.resource.ResourceModel",
+				"uri": "i18n/i18n.properties"
+			}
+		},
+		"resources": {
+			"css": []
+		},
+		"routing": {
+			"config": {},
+			"routes": [
+				{
+					"pattern": ":?query:",
+					"name": "OrderitemsList",
+					"target": "OrderitemsList"
+				},
+				{
+					"pattern": "Orderitems({key}):?query:",
+					"name": "OrderitemsObjectPage",
+					"target": "OrderitemsObjectPage"
+				}
+			],
+			"targets": {
+				"OrderitemsList": {
+					"type": "Component",
+					"id": "OrderitemsList",
+					"name": "sap.fe.templates.ListReport",
+					"options": {
+						"settings": {
+							"contextPath": "/Orderitems",
+							"variantManagement": "Page",
+							"navigation": {
+								"Orderitems": {
+									"detail": {
+										"route": "OrderitemsObjectPage"
+									}
+								}
+							},
+							"controlConfiguration": {
+								"@com.sap.vocabularies.UI.v1.LineItem": {
+									"tableSettings": {
+										"type": "AnalyticalTable",
+										"selectionMode": "Auto"
+									}
+								}
+							},
+							"views": {
+								"paths": [
+									{
+										"primary": [
+											{
+												"annotationPath": "com.sap.vocabularies.UI.v1.SelectionPresentationVariant#chartView2"
+											}
+										],
+										"secondary": [
+											{
+												"annotationPath": "com.sap.vocabularies.UI.v1.LineItem"
+											}
+										],
+										"defaultPath": "both"
+									}
+								]
+							}
+						}
+					}
+				},
+				"OrderitemsObjectPage": {
+					"type": "Component",
+					"id": "OrderitemsObjectPage",
+					"name": "sap.fe.templates.ObjectPage",
+					"options": {
+						"settings": {
+							"editableHeaderContent": false,
+							"contextPath": "/Orderitems"
+						}
+					}
+				}
+			}
+		}
+	},
+	"sap.fiori": {
+		"registrationIds": [],
+		"archeType": "analytical"
+	}
 }
