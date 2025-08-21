@@ -114,6 +114,12 @@
 					"name": "sap.fe.templates.ListReport",
 					"options": {
 						"settings": {
+							"keyPerformanceIndicators": {
+								"KPIQuantity": {
+									"entitySet": "Orderitems",
+									"qualifier": "KPIQuantity"
+								}
+							},
 							"contextPath": "/Orderitems",
 							"variantManagement": "Page",
 							"navigation": {
