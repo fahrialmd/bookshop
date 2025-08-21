@@ -93,3 +93,31 @@ annotate service.OrderItems with @(UI.LineItem #Items: [
         Value: currency_code,
     },
 ]);
+
+annotate CatalogService.OrderItems with @(
+    UI         : {
+        LineItem       : [
+            {Value: ID},
+            {Value: book_ID},
+            {Value: quantity},
+            {Value: amount}
+
+        ],
+        SelectionFields: [book_ID],
+    },
+    Aggregation: {
+        ApplySupported           : {
+            $Type              : 'Aggregation.ApplySupportedType',
+            GroupableProperties: [
+                ID,
+                book_ID
+            ]
+        },
+        CustomAggregate #amount  : 'Edm.Decimal',
+        CustomAggregate #quantity: 'Edm.Int'
+    }
+) {
+    amount    @Analytics.Measure  @Aggregation.default: #SUM  @Measures.ISOCurrency: currency_code;
+    quantity  @Analytics.Measure  @Aggregation.default: #SUM;
+    book      @Common.Text: book.title
+};
