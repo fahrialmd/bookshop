@@ -1,7 +1,7 @@
 using CatalogService as service from '../../srv/cat-service';
 
 annotate service.Orderitems with @(
-    UI.FieldGroup #General    : {
+    UI.FieldGroup #General                     : {
         $Type: 'UI.FieldGroupType',
         Data : [
             {
@@ -20,13 +20,13 @@ annotate service.Orderitems with @(
             },
         ],
     },
-    UI.Facets                 : [{
+    UI.Facets                                  : [{
         $Type : 'UI.ReferenceFacet',
         Label : 'General',
         ID    : 'General',
         Target: '@UI.FieldGroup#General',
     }, ],
-    UI.LineItem               : [
+    UI.LineItem                                : [
         {
             $Type: 'UI.DataField',
             Label: 'quantity',
@@ -38,8 +38,8 @@ annotate service.Orderitems with @(
             Value: amount,
         },
     ],
-    UI.SelectionFields        : [book_ID],
-    Aggregation               : {
+    UI.SelectionFields                         : [book_ID],
+    Aggregation                                : {
         ApplySupported           : {
             $Type                 : 'Aggregation.ApplySupportedType',
             GroupableProperties   : [
@@ -55,7 +55,7 @@ annotate service.Orderitems with @(
         CustomAggregate #amount  : 'Edm.Decimal',
         CustomAggregate #quantity: 'Edm.Int'
     },
-    UI.Chart #chartView       : {
+    UI.Chart #chartView2                       : {
         $Type     : 'UI.ChartDefinitionType',
         ChartType : #Column,
         Dimensions: [ID, ],
@@ -64,16 +64,33 @@ annotate service.Orderitems with @(
             amount
         ],
     },
-    PresentationVariant #chart: {
-        $Type         : 'UI.PresentationVariantType',
-        Visualizations: ['@UI.Chart#chart'],
-        Text          : 'Chart'
+    UI.SelectionPresentationVariant #tableView : {
+        $Type              : 'UI.SelectionPresentationVariantType',
+        SelectionVariant   : {
+            $Type        : 'UI.SelectionVariantType',
+            SelectOptions: []
+        },
+        PresentationVariant: {
+            $Type         : 'UI.PresentationVariantType',
+            Visualizations: ['@UI.LineItem'],
+            SortOrder     : []
+        },
+        Text               : 'Table View'
     },
-    PresentationVariant #table: {
-        $Type         : 'UI.PresentationVariantType',
-        Visualizations: ['@UI.LineItem'],
-        Text          : 'Table'
-    },
+
+    UI.SelectionPresentationVariant #chartView2: {
+        $Type              : 'UI.SelectionPresentationVariantType',
+        SelectionVariant   : {
+            $Type        : 'UI.SelectionVariantType',
+            SelectOptions: []
+        },
+        PresentationVariant: {
+            $Type         : 'UI.PresentationVariantType',
+            Visualizations: ['@UI.Chart#chartView2'],
+            SortOrder     : []
+        },
+        Text               : 'Chart View'
+    }
 );
 
 annotate service.Orderitems with {
