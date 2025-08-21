@@ -1,109 +1,143 @@
 using CatalogService as service from '../../srv/cat-service';
+
 annotate service.Orderitems with @(
-    UI.FieldGroup #GeneratedGroup : {
-        $Type : 'UI.FieldGroupType',
+    UI.FieldGroup #General    : {
+        $Type: 'UI.FieldGroupType',
         Data : [
             {
-                $Type : 'UI.DataField',
-                Label : 'quantity',
-                Value : quantity,
+                $Type: 'UI.DataField',
+                Label: 'quantity',
+                Value: quantity,
             },
             {
-                $Type : 'UI.DataField',
-                Label : 'amount',
-                Value : amount,
+                $Type: 'UI.DataField',
+                Label: 'amount',
+                Value: amount,
             },
             {
-                $Type : 'UI.DataField',
-                Label : 'currency_code',
-                Value : currency_code,
+                $Type: 'UI.DataField',
+                Value: currency_code,
             },
         ],
     },
-    UI.Facets : [
+    UI.Facets                 : [{
+        $Type : 'UI.ReferenceFacet',
+        Label : 'General',
+        ID    : 'General',
+        Target: '@UI.FieldGroup#General',
+    }, ],
+    UI.LineItem               : [
         {
-            $Type : 'UI.ReferenceFacet',
-            ID : 'GeneratedFacet1',
-            Label : 'General Information',
-            Target : '@UI.FieldGroup#GeneratedGroup',
+            $Type: 'UI.DataField',
+            Label: 'quantity',
+            Value: quantity,
+        },
+        {
+            $Type: 'UI.DataField',
+            Label: 'amount',
+            Value: amount,
         },
     ],
-    UI.LineItem : [
-        {
-            $Type : 'UI.DataField',
-            Label : 'quantity',
-            Value : quantity,
+    UI.SelectionFields        : [book_ID],
+    Aggregation               : {
+        ApplySupported           : {
+            $Type                 : 'Aggregation.ApplySupportedType',
+            GroupableProperties   : [
+                ID,
+                book_ID,
+                currency_code
+            ],
+            AggregatableProperties: [
+                {Property: quantity},
+                {Property: amount}
+            ]
         },
-        {
-            $Type : 'UI.DataField',
-            Label : 'amount',
-            Value : amount,
-        },
-        {
-            $Type : 'UI.DataField',
-            Label : 'currency_code',
-            Value : currency_code,
-        },
-    ],
+        CustomAggregate #amount  : 'Edm.Decimal',
+        CustomAggregate #quantity: 'Edm.Int'
+    },
+    UI.Chart #chartView       : {
+        $Type     : 'UI.ChartDefinitionType',
+        ChartType : #Column,
+        Dimensions: [ID, ],
+        Measures  : [
+            quantity,
+            amount
+        ],
+    },
+    PresentationVariant #chart: {
+        $Type         : 'UI.PresentationVariantType',
+        Visualizations: ['@UI.Chart#chart'],
+        Text          : 'Chart'
+    },
+    PresentationVariant #table: {
+        $Type         : 'UI.PresentationVariantType',
+        Visualizations: ['@UI.LineItem'],
+        Text          : 'Table'
+    },
 );
 
 annotate service.Orderitems with {
-    parent @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Orders',
-        Parameters : [
+    amount    @Analytics.Measure  @Aggregation.default: #SUM  @Measures.ISOCurrency: currency_code;
+    quantity  @Analytics.Measure  @Aggregation.default: #SUM;
+    book      @Common.Text: book.title
+};
+
+annotate service.Orderitems with {
+    parent @Common.ValueList: {
+        $Type         : 'Common.ValueListType',
+        CollectionPath: 'Orders',
+        Parameters    : [
             {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : parent_ID,
-                ValueListProperty : 'ID',
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: parent_ID,
+                ValueListProperty: 'ID',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'OrderNo',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'OrderNo',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'buyer',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'buyer',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'total',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'total',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'currency_code',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'currency_code',
             },
         ],
     }
 };
 
 annotate service.Orderitems with {
-    book @Common.ValueList : {
-        $Type : 'Common.ValueListType',
-        CollectionPath : 'Books',
-        Parameters : [
+    book @Common.ValueList: {
+        $Type         : 'Common.ValueListType',
+        CollectionPath: 'Books',
+        Parameters    : [
             {
-                $Type : 'Common.ValueListParameterInOut',
-                LocalDataProperty : book_ID,
-                ValueListProperty : 'ID',
+                $Type            : 'Common.ValueListParameterInOut',
+                LocalDataProperty: book_ID,
+                ValueListProperty: 'ID',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'title',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'title',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'descr',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'descr',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'genre_ID',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'genre_ID',
             },
             {
-                $Type : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'stock',
+                $Type            : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty: 'stock',
             },
         ],
     }
 };
-

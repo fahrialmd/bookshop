@@ -72,24 +72,3 @@ annotate service.Orders with @(
 annotate service.Orders with {
     total  @Analytics.Measure  @Aggregation.default: #SUM
 };
-
-annotate service.OrderItems with @(UI.LineItem #Items: [
-    {
-        $Type: 'UI.DataField',
-        Value: book.title,
-    },
-    {
-        $Type: 'UI.DataField',
-        Value: quantity,
-        Label: 'quantity',
-    },
-    {
-        $Type: 'UI.DataField',
-        Value: amount,
-        Label: 'amount',
-    },
-    {
-        $Type: 'UI.DataField',
-        Value: currency_code,
-    },
-]);
