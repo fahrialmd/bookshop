@@ -50,6 +50,16 @@ annotate service.Orderitems with @(
             AggregatableProperties: [
                 {Property: quantity},
                 {Property: amount}
+            ],
+            Transformations       : [
+                'aggregate',
+                // 'topcount',
+                // 'bottomcount',
+                // 'identity',
+                'concat',
+                'groupby',
+                'filter',
+                'search'
             ]
         },
         CustomAggregate #amount  : 'Edm.Decimal',
