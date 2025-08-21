@@ -38,6 +38,15 @@
 										"title": "Analytical Chart Report",
 										"description": "Analytical Chart Report"
 									}
+								},
+								{
+									"id": "analyticalpagereport-display",
+									"tileType": "sap.ushell.ui.tile.StaticTile",
+									"properties": {
+										"targetURL": "#analyticalpagereport-display",
+										"title": "Analytical Page Report",
+										"description": "Analytical Page Report"
+									}
 								}
 							]
 						}
@@ -91,6 +100,19 @@
 								"applicationType": "SAPUI5",
 								"additionalInformation": "SAPUI5.Component=analyticalchartreport",
 								"url": "/analyticalchartreport/webapp"
+							}
+						},
+						"analyticalpagereport-display": {
+							"semanticObject": "analyticalpagereport",
+							"action": "display",
+							"signature": {
+								"parameters": {},
+								"additionalParameters": "allowed"
+							},
+							"resolutionResult": {
+								"applicationType": "SAPUI5",
+								"additionalInformation": "SAPUI5.Component=analyticalpagereport",
+								"url": "/analyticalpagereport/webapp"
 							}
 						}
 					}
